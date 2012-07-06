@@ -1,0 +1,38 @@
+Server Sync
+
+
+This is a simple set of scripts to sync your local filesystem to your remote server
+these scripts use rsync http://linux.die.net/man/1/rsync which is very useful and 
+efficient tool for uploading/downloading files
+
+say good bye to slow booring ftp uploads via filezilla
+
+USAGE
+-----
+
+*download the scripts
+*if your using amazon web services or any other service which provides you a public 
+key. use the files in aws or else use ssh. if you havent already pushed the public key 
+to the server and its prompting for the password read below HOW TO PUSH YOUR PUBLICKEY
+*edit the configuration in the first few lines
+*make them executable 
+	#chmod +x upload.sh
+	#chmod +x download.sh
+*if you want to download the files from the server with the database
+#./download.sh withdb
+*if you want to download the files from the server without the database
+#./download.sh
+*if you want to upload the files to the server with the database
+#./upload.sh withdb
+*if you want to upload the files to the server without the database
+#./upload.sh
+
+HOW TO PUSH YOUR PUBLIC KEY
+---------------------------
+*if you does not have a public key already in ~/.ssh/id_rsa.pub
+*execute the following if you already have a file like above you can skip the following step
+#ssh-keygen -t dsa
+
+*to push your local public key to remote server
+ssh-copy-id {username}@{remote IP address}
+
