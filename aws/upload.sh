@@ -27,7 +27,12 @@ find $LocalServerPath/web -type f -exec chmod 644 {} \;
 fi
 
 echo "Syncronising the files"
-rsync -Paz --delete --progress --rsh "ssh -i $PublicKey" --rsync-path "rsync"   $LocalServerPath ec2-user@$ServerIp:$WebServerPath --exclude-from $Excludes
+RC=1 
+while [[ $RC -ne 0 && $RC -ne 20 ]]
+do
+	rsync -Paz --delete --progress --rsh "ssh -i $PublicKey" --rsync-path "rsync"   $LocalServerPath ec2-user@$ServerIp:$WebServerPath --exclude-from $Excludes
+	RC=$?
+done
 
 if [ "$1" == "$S1" ];then
 echo "Running the database sync"

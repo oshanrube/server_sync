@@ -11,7 +11,12 @@ if [ "$1" == "$S1" ];then
 fi
 
 echo "Syncronising the files"
-rsync -Paz --delete --progress --rsh "ssh -i $PublicKey" --rsync-path "rsync" ec2-user@$ServerIp:$WebServerPath $LocalServerPath --exclude-from $Excludes
+RC=1 
+while [[ $RC -ne 0 && $RC -ne 20 ]]
+do
+	rsync -Paz --delete --progress --rsh "ssh -i $PublicKey" --rsync-path "rsync" ec2-user@$ServerIp:$WebServerPath $LocalServerPath --exclude-from $Excludes
+	RC=$?
+done
 
 if [ "$1" == "$S1" ];then
 echo "Running the database sync"
