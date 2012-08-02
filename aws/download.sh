@@ -1,7 +1,8 @@
 #! /bin/bash
 ##STANDARD VARIABLES
 S1="withdb"
-PWD=pwd
+DEV="dev"
+PWD=`pwd`
 source configuration
 
 ##DO NOT CHANGE ANYTHING BELOW THIS
@@ -24,4 +25,8 @@ ssh -i $PublicKey ec2-user@$ServerIp 'rm '$WebServerPath$DBname'-database.sql.gz
 gunzip -f $LocalServerPath$DBname-database.sql.gz 
 mysql --user=$DBuser --password=$DBpass --database=$DBname < $LocalServerPath$DBname-database.sql 
 rm $LocalServerPath$DBname-database.sql
+fi
+
+if [ "$2" == "$DEV" ];then
+chmod 777 -R $LocalServerPath
 fi

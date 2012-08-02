@@ -1,5 +1,6 @@
 #! /bin/bash
 S1="withdb"
+DEV="dev"
 PWD=`pwd`
 
 source configuration
@@ -39,4 +40,8 @@ if [ "$1" == "$S1" ];then
 echo "Running the database sync"
 ssh $ServerUser@$ServerIp 'bash -s' < $PWD/lib/sync-db.sh $DBname $DBuser $DBpass $WebServerPath
 rm $LocalServerPath$DBname-database.sql.gz
+fi
+
+if [ "$2" == "$DEV" ];then
+chmod 777 -R $LocalServerPath
 fi

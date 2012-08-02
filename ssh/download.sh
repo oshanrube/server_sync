@@ -1,6 +1,7 @@
 #! /bin/bash
 ##Standard variables
 S1="withdb"
+DEV="dev"
 PWD=`pwd`
 
 source configuration
@@ -25,4 +26,8 @@ ssh $ServerUser@$ServerIp 'rm '$WebServerPath$DBname'-database.sql.gz'
 gunzip -f $LocalServerPath$DBname-database.sql.gz 
 mysql --user="$DBuser" --password="$DBpass" --database="$DBname" < $LocalServerPath$DBname-database.sql 
 rm $LocalServerPath$DBname-database.sql
+fi
+
+if [ "$2" == "$DEV" ];then
+chmod 777 -R $LocalServerPath
 fi
