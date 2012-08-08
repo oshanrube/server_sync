@@ -1,6 +1,7 @@
 #! /bin/bash
 ##Standard variables
 S1="withdb"
+DEV="dev"
 PWD=`pwd`
 
 source configuration
@@ -12,12 +13,25 @@ if [ "$1" == "$S1" ];then
 fi
 
 echo "Syncronising the files"
-rsync -Paz --progress $ServerUser@$ServerIp:$WebServerPath $LocalServerPath --exclude-from $Excludes
+RC=1 
+while [[ $RC -ne 0 && $RC -ne 20 ]]
+do
+	rsync -Paz --progress $ServerUser@$ServerIp:$WebServerPath $LocalServerPath --exclude-from $Excludes
+	RC=$?
+done
 
 if [ "$1" == "$S1" ];then
 echo "Running the database sync"
 ssh $ServerUser@$ServerIp 'rm '$WebServerPath$DBname'-database.sql.gz'
 gunzip -f $LocalServerPath$DBname-database.sql.gz 
+<<<<<<< HEAD
 mysql --user=$DBuser --password="$DBpass" --database=$DBname < $LocalServerPath$DBname-database.sql 
+=======
+mysql --user="$DBuser" --password="$DBpass" --database="$DBname" < $LocalServerPath$DBname-database.sql 
+>>>>>>> db31ab63afefd42fd386171821fcd77e5f049af7
 rm $LocalServerPath$DBname-database.sql
+fi
+
+if [ "$2" == "$DEV" ];then
+chmod 777 -R $LocalServerPath
 fi
