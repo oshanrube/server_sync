@@ -3,7 +3,7 @@
 S1="withdb"
 PWD=`pwd`
 
-RootPW="oshan1991"
+RootPW=""
 
 source configuration
 
