@@ -7,7 +7,7 @@ source configuration
 ##DO NOT CHANGE ANYTHING BELOW THIS
 if [ "$1" == "$S1" ];then
 	echo "Dumping the database"
-	mysqldump --user=$DBuser --password=$DBpass --lock-tables=false $DBname | gzip > $LocalServerPath/$DBname-database.sql.gz
+	mysqldump --user=$DBuser --password="$DBpass" --lock-tables=false $DBname | gzip > $LocalServerPath/$DBname-database.sql.gz
 fi
 
 echo "Removing tempory files"
