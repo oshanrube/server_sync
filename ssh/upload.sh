@@ -1,18 +1,13 @@
 #! /bin/bash
 S1="withdb"
 DEV="dev"
-PWD=`pwd`
 
 source configuration
 
 ##DO NOT CHANGE ANYTHING BELOW THIS
 if [ "$1" == "$S1" ];then
 	echo "Dumping the database"
-<<<<<<< HEAD
-	mysqldump --user=$DBuser --password="$DBpass" --lock-tables=false $DBname | gzip > $LocalServerPath/$DBname-database.sql.gz
-=======
 	mysqldump --user="$DBuser" --password="$DBpass" --lock-tables=false "$DBname" | gzip > $LocalServerPath/$DBname-database.sql.gz
->>>>>>> db31ab63afefd42fd386171821fcd77e5f049af7
 fi
 
 echo "Removing tempory files"

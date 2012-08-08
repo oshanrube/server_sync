@@ -10,3 +10,4 @@ Excludes=$PWD"/lib/excludes"
 WebServerPath="/home/public_html/"
 ServerUser=""
 ServerIp="111.111.111.111"
+PWD=`pwd`
