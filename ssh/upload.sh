@@ -1,7 +1,6 @@
 #! /bin/bash
 S1="withdb"
 DEV="dev"
-PWD=`pwd`
 
 source configuration
 

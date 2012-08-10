@@ -2,7 +2,6 @@
 ##Standard variables
 S1="withdb"
 DEV="dev"
-PWD=`pwd`
 
 source configuration
 
@@ -22,10 +21,10 @@ done
 
 if [ "$1" == "$S1" ];then
 echo "Running the database sync"
-ssh $ServerUser@$ServerIp 'rm '$WebServerPath$DBname'-database.sql.gz'
-gunzip -f $LocalServerPath$DBname-database.sql.gz 
-mysql --user="$DBuser" --password="$DBpass" --database="$DBname" < $LocalServerPath$DBname-database.sql 
-rm $LocalServerPath$DBname-database.sql
+	ssh $ServerUser@$ServerIp 'rm '$WebServerPath$DBname'-database.sql.gz'
+	gunzip -f $LocalServerPath$DBname-database.sql.gz 
+	mysql --user="$DBuser" --password="$DBpass" --database="$DBname" < $LocalServerPath$DBname-database.sql 
+	rm $LocalServerPath$DBname-database.sql
 fi
 
 if [ "$2" == "$DEV" ];then
