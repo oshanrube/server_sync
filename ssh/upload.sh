@@ -22,6 +22,7 @@ find $LocalServerPath/administrator/components -type d -exec chmod 755 {} \;
 find $LocalServerPath/components -type d -exec chmod 777 {} \;
 find $LocalServerPath/logs -type d -exec chmod 777 {} \;
 find $LocalServerPath/images -type d -exec chmod 777 {} \;
+find $LocalServerPath/cache -type d -exec chmod 777 {} \;
 find $LocalServerPath/tmp -type d -exec chmod 777 {} \;
 elif [ "$SYSTEM" == "symfony" ];then
 find $LocalServerPath/web -type d -exec chmod 744 {} \;
