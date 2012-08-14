@@ -2,7 +2,7 @@ Server Sync
 
 
 This is a simple set of scripts to sync your local filesystem to your remote server
-these scripts use rsync http://linux.die.net/man/1/rsync which is very useful and 
+these scripts use rsync (http://linux.die.net/man/1/rsync) which is very useful and 
 efficient tool for uploading/downloading files
 
 say good bye to slow booring ftp uploads via filezilla
@@ -16,16 +16,30 @@ key. use the files in aws or else use ssh. if you havent already pushed the publ
 to the server and its prompting for the password read below HOW TO PUSH YOUR PUBLICKEY
 *edit the configuration in the first few lines
 *make them executable 
-	#chmod +x upload.sh
-	#chmod +x download.sh
+	#chmod +x *.sh
+
 *if you want to download the files from the server with the database
 #./download.sh withdb
+
 *if you want to download the files from the server without the database
 #./download.sh
+
 *if you want to upload the files to the server with the database
 #./upload.sh withdb
+
 *if you want to upload the files to the server without the database
 #./upload.sh
+
+*if you want to create local db with remote credentials 
+#./create-db.sh
+
+*if you want to backup both databases before uploading
+#./dump-db.sh
+
+*/*TODO*/ this is supose to restore the latest backup but still i'm searching for a way to 
+get the latest filename from shell. anyway you can manually put the filename and run. basically 
+its just like restoredb in lib filder
+#./restore-db.sh
 
 HOW TO PUSH YOUR PUBLIC KEY
 ---------------------------
